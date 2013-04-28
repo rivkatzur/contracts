@@ -40,6 +40,10 @@
     <p><%= f.label l(:field_invoice_url) %></p>
     <p><%= f.text_field :invoice_url, :size => 50 %></p>
   </div>
+   <div>
+    <p><%= f.label l(:field_percents) %></p>
+    <p><%= f.text_field :percents, :size => 20 %></p><span><%= l(:percents_explanation)%></span>
+  </div>
   <div>
     <% controller.action_name == "new" ? msg = l(:label_create_contract) : msg = l(:label_update_contract) %>
     <p><%= f.submit msg  %></p>

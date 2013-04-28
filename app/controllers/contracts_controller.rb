@@ -36,6 +36,7 @@ class ContractsController < ApplicationController
 
   def create
     @contract = Contract.new(params[:contract])
+    @contract.percents = nil if params[:percents] == ""
     if @contract.save
       flash[:notice] = l(:text_contract_saved)
       redirect_to :action => "show", :id => @contract.id

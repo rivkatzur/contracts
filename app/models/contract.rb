@@ -29,11 +29,16 @@ class Contract < ActiveRecord::Base
 			hours_over = hours - self.hours_remaining
 			hours_over > 0 ? hours_over : 0
 	end
+	
+	def remaining_hours_less_percents?
+	  return false if percents.nil?
+	  project = self.project
+    project.total_hours_remaining <= project.total_hours_purchased * percents / 100
+	end
 
   def alert_project_manager
-    project = self.project
-    if project.total_hours_purchased * PERCENT / 100 <= project.total_hours_remaining
-      Mailer.contract_exploited_hours(self, PERCENT).deliver
+    if remaining_hours_less_percents?
+      Mailer.contract_exploited_hours(self, percents).deliver
     end
   end
   private

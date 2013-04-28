@@ -66,5 +66,7 @@ en:
   field_hourly_rate: Hourly Rate
   field_contract_url: Contract URL
   field_invoice_url: Invoice URL
+  field_percents: Percents for notify
   
   mail_body_contract: "The contract '%{title}' hours have been exploited above %{percents}%"
+  percents_explanation: "When left less than hours, the project managers will be notify. (default value is 10%)"

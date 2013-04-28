@@ -19,6 +19,7 @@
   </thead>
   <% @contracts.each do |contract| %>
     <tr class="<%= cycle("odd", "even") %>">
+    	<% cls= contract.remaining_hours_less_percents? || contract.hours_remaining < 0 ? 'red' : 'green'%>
       <td>
         <%= link_to contract.title, "/projects/#{contract.project.identifier}/contracts/#{contract.id}" %>
       </td>
@@ -28,9 +29,9 @@
       <% if (@project != nil) && (User.current.roles_for_project(contract.project).first.permissions.include?(:view_hourly_rate)) %>
         <td><%= number_to_currency(contract.hourly_rate) %></td>
       <% end %>
-      <td class="green"><%= number_to_currency(contract.amount_remaining) %></td>
+      <td class="<%= cls %>"><%= number_to_currency(contract.amount_remaining) %></td>
       <td><%= number_with_precision contract.hours_spent, :precision => 2 %></td>
-      <td class="blue"><%= number_with_precision contract.hours_remaining, :precision => 2 %></td>
+      <td class="<%= cls %>"><%= number_with_precision contract.hours_remaining, :precision => 2 %></td>
       <td>
         <% if !contract.contract_url.empty? %>
           <%= link_to image_tag("/images/files/text.png"), contract.contract_url %>
