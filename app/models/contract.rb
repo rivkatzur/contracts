@@ -8,7 +8,6 @@ class Contract < ActiveRecord::Base
   #validates :start_date, :is_after_agreement_date => true
   validates :end_date, :is_after_start_date => true
   before_destroy { |contract| contract.time_entries.clear }
-  PERCENT = 10
   def hours_purchased
     self.purchase_amount / self.hourly_rate
   end
@@ -32,8 +31,7 @@ class Contract < ActiveRecord::Base
 	
 	def remaining_hours_less_percents?
 	  return false if percents.nil?
-	  project = self.project
-    project.total_hours_remaining <= project.total_hours_purchased * percents / 100
+    hours_remaining < hours_purchased * percents / 100
 	end
 
   def alert_project_manager

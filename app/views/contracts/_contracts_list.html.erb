@@ -19,7 +19,7 @@
   </thead>
   <% @contracts.each do |contract| %>
     <tr class="<%= cycle("odd", "even") %>">
-    	<% cls= contract.remaining_hours_less_percents? || contract.hours_remaining < 0 ? 'red' : 'green'%>
+    	<% cls = contract.hours_remaining < 0 || contract.remaining_hours_less_percents? ? 'red' : 'green'%>
       <td>
         <%= link_to contract.title, "/projects/#{contract.project.identifier}/contracts/#{contract.id}" %>
       </td>
