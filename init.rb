@@ -1,7 +1,7 @@
 require_dependency 'contracts/hooks/hooks'
 require_dependency 'contracts/patches/time_entry_patch'
 require_dependency 'contracts/patches/project_patch'
-# require_dependency 'contracts/patches/mailer_patch'
+require_dependency 'contracts/patches/mailer_patch'
 require_dependency 'contracts/validators/is_after_agreement_date_validator'
 require_dependency 'contracts/validators/is_after_start_date_validator'
 
